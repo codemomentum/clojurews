@@ -1,0 +1,8 @@
+{
+  :interceptors
+  [
+    clojurews.intercept/log-request-headers
+    clojurews.intercept/log-request-body
+    ]}
+
+;execution order is bottom up
