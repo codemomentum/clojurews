@@ -11,31 +11,28 @@
   )
 
 (defn handler [req]
+  (let [body (String. (.bytes (:body req)))
+        parsed (read-string body)
+        result (with-out-str (pp/pprint parsed))]
+    (log/debugf "Pretty Printing Posted Content %s" parsed)
+    result))
+
+(defn async-handler [req]
   (hk/with-channel req channel
-                   (let [body (String. (.bytes (:body req)))
-                         parsed (read-string body)
-                         result (with-out-str (pp/pprint parsed))]
-                     (do
-                       (log/debugf "Pretty Printing Posted Content %s" parsed)
-                       (hk/send! channel {:status 200 :headers {"Content-Type" "text/plain"} :body result}))))
+                   (hk/send! channel {:status 200 :headers {"Content-Type" "text/plain"} :body (handler req)}))
   )
 
-(def interceptors (atom nil))
-
-
+(defonce interceptors (atom nil))
 
 (defroutes all-routes
            (POST ["/pprint/"] req handler)
            (POST ["/pprint_debug/"] req (log-request-headers handler))
            (POST ["/pprint_intercept/"] req @interceptors))
 
-
-
 (def app
   (->
     (routes all-routes)
-    handler/api
-    ))
+    handler/api))
 
 (defn -main []
   (build-interceptors! handler interceptors)

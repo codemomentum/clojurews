@@ -20,6 +20,4 @@
   :java-source-paths ["src-java"]
   :aot [clojurews.core] :main clojurews.core
   :global-vars {*warn-on-reflection* true}
-
-  :jvm-opts ["-Dfile.encoding=utf-8 -Xverify:none"]
   )
