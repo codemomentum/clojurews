@@ -2,6 +2,8 @@
 
 A Sample Clojure project to demonstrate how to build functional Rest Services
 
+http://www.codemomentum.org/2014/03/elegant-rest-services-with-clojure.html
+
 
 ## Usage
 
