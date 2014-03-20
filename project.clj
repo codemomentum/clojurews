@@ -11,6 +11,8 @@
 
 
                  [org.clojure/tools.logging "0.2.6"]
+
+                 [org.clojure/data.json "0.2.4"]
                  ]
 
 
