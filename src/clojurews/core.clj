@@ -37,4 +37,5 @@
 (defn -main []
   (build-interceptors! handler interceptors)
   (log/infof "Starting REST Server")
-  (hk/run-server app {:port 8080}))
+  (hk/run-server app {:port (:port props)})
+  (log/infof "Started REST Server at port %s" (:port props)))

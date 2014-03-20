@@ -3,6 +3,7 @@
   [
     clojurews.intercept/log-request-headers
     clojurews.intercept/log-request-body
-    ]}
+    ]
+  :port 8080}
 
 ;execution order is bottom up
