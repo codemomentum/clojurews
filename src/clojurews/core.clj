@@ -30,9 +30,7 @@
            (POST ["/pprint_intercept/"] req @interceptors))
 
 (def app
-  (->
-    (routes all-routes)
-    handler/api))
+  (handler/api (routes all-routes)))
 
 (defn -main []
   (build-interceptors! handler interceptors)
